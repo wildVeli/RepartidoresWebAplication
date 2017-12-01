@@ -14,9 +14,17 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 /**
- *
+ *  Mantiene los datos que contienen las áreas
+ *  <ul>
+ *      <li><strong>cp</strong> Código postal del área</li>
+ *      <li><strong>nombre</strong> Nombre del área</li>
+ *      <li><strong>descripcion</strong> Descripción del área</li>
+ *      <li><strong>repartidors</strong> Lista de repartidores {@link  gestionrepartidores.entity.Repartidor} que reparten en ese área</li>
+ *      <li><strong>pedidos</strong> Collección de pedidos {@link  gestionrepartidores.entity.Pedido} existentes en ese área</li>
+ *  </ul>
  * @author Sergio Lopez Fuentefría
  */
+
 @Entity
 public class Area implements Serializable {
 

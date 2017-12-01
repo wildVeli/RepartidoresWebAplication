@@ -8,6 +8,7 @@ package gestionrepartidores.entity;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,7 +32,8 @@ public class Pedido implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaSalida;
     private String destino;
-    private Character tipoPago;
+    @Enumerated
+    private TipoPago tipoPago;
     @ManyToOne
     private Repartidor repartidor;
     @ManyToOne
@@ -78,13 +80,15 @@ public class Pedido implements Serializable {
         this.destino = destino;
     }
 
-    public Character getTipoPago() {
+    public TipoPago getTipoPago() {
         return tipoPago;
     }
 
-    public void setTipoPago(Character tipoPago) {
+    public void setTipoPago(TipoPago tipoPago) {
         this.tipoPago = tipoPago;
     }
+
+
 
     public Repartidor getRepartidor() {
         return repartidor;

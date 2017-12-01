@@ -15,7 +15,19 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
 /**
- *
+  *  Mantiene los datos que contienen los Repartidores
+ *  <ul>
+ *      <li><strong>id</strong> Id del repartidor</li>
+ *      <li><strong>dni</strong> dni del repartidor</li>
+ *      <li><strong>fechaAlta</strong> fecha en la que se dio de alta al repartidor</li>
+ *      <li><strong>nombre</strong> nombre del repartidor</li>
+ *      <li><strong>email</strong> email del repartidor</li>
+ *      <li><strong>franquicia</strong> franquicia en la que trabaja el repartidor</li>
+ *      <li><strong>password</strong> contraseña de el repartidor</li>
+ *      <li><strong>recaudaciones</strong> coleccion de las recaudaciones {@link  gestionrepartidores.entity.Recaudacion} del repartidor</li>
+ *      <li><strong>areas</strong> colección de áreas  {@link  gestionrepartidores.entity.Area} en las que trabaja el repartidor</li>
+ *      <li><strong>pedidos</strong> colección de los pedidos  {@link  gestionrepartidores.entity.Pedido} que reparte el repartidor</li>
+ *  </ul>
  * @author Sergio López Fuentefría
  */
 @Entity
