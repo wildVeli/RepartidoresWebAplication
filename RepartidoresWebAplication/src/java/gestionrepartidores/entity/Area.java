@@ -11,7 +11,10 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *  Mantiene los datos que contienen las áreas
@@ -26,6 +29,17 @@ import javax.persistence.OneToMany;
  */
 
 @Entity
+@Table(name="areas",schema="repartidoresdb")
+@NamedQueries({
+    @NamedQuery(
+            name="findAllAreas",
+            query="SELECT u FROM Area u"
+    ),
+    @NamedQuery(
+            name="findNumeroArea",
+            query="SELECT u FROM Area u WHERE u.nombre = :nombre"
+    )
+ })
 public class Area implements Serializable {
 
 

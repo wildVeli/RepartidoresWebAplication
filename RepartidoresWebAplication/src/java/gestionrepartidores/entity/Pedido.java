@@ -13,13 +13,37 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 
-/**
+
+
+/**E
  *
  * @author Sergio López Fuentefría
  */
 @Entity
+@Table(name="pedidos",schema="repartidoresdb")
+@NamedQueries({
+    @NamedQuery(
+            name="findAllPedidos",
+            query="SELECT u FROM Pedido u"
+    ),
+    @NamedQuery(
+            name="findPedidosByNSeguimiento",
+            query="SELECT u FROM Pedido u WHERE u.nSeguimiento = :nSeguimiento"
+    ),
+    @NamedQuery(
+            name="findPedidosByAlbaran",
+            query="SELECT u FROM Pedido u WHERE u.albaran = :albaran"
+    ),
+    @NamedQuery(
+            name="findPedidosByDestino",
+            query="SELECT u FROM Pedido u WHERE u.destino = :destino"
+    ),
+ })
 public class Pedido implements Serializable {
 
     private static final long serialVersionUID = 1L;
