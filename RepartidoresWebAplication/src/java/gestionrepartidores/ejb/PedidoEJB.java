@@ -23,7 +23,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author ubuntu
+ * @author Sergio López Fuentefía
  */
 @Stateless
 public class PedidoEJB implements PedidoEJBLocal {
@@ -60,12 +60,12 @@ public class PedidoEJB implements PedidoEJBLocal {
    
         LOGGER.info("Pedido añadido");
     }
-arreglar
+
     @Override
     public void updatePedido(Pedido pedido) throws ExceptionUpdatePedido {
         LOGGER.info("actualizando pedido");
         try{
-          em.remove(pedido);
+          if(!em.contains(pedido))pedido = em.merge(pedido);
         }catch(Exception e){
             LOGGER.severe("error al actualizar pedido"+e.getMessage());
             throw new ExceptionUpdatePedido(e.getMessage());
@@ -79,8 +79,22 @@ arreglar
         Collection <Pedido> pedidos = new ArrayList <Pedido> ();
         LOGGER.info("búsqueda simple pedido");
         try{
+            Collection busqueda = null;
+            switch(selectedItem){
+            case ("N.Seguimiento"):
+                pedidos = em.createNamedQuery("findPedidosByNSeguimiento").setParameter("nSeguimiento",tfBuscarSimple).getResultList();
+                break;
+            case ("Destino"):
+                pedidos = em.createNamedQuery("findPedidosByDestino").setParameter("destino",tfBuscarSimple).getResultList();
+                break;
+            case ("Albarán"):
+                pedidos = em.createNamedQuery("findPedidosByAlbaran").setParameter("albaran",tfBuscarSimple).getResultList();
+                break;
+            case ("Fecha Entrada"):
+                pedidos = em.createNamedQuery("findPedidosByFechaEntrada").setParameter("fechaEntrada",tfBuscarSimple).getResultList();
+                break;
+        }
           
-          pedidos = em.createNamedQuery("");
         }catch(Exception e){
             LOGGER.severe("error al efectuar una búsqueda simple"+e.getMessage());
             throw new ExceptionGetPedidosBusquedaSimple(e.getMessage());

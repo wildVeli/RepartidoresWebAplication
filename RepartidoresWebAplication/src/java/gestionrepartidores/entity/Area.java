@@ -37,7 +37,11 @@ import javax.persistence.Table;
     ),
     @NamedQuery(
             name="findNumeroArea",
-            query="SELECT u FROM Area u WHERE u.nombre = :nombre"
+            query="SELECT u.cp FROM Area u WHERE u.nombre = :nombre"
+    ),
+    @NamedQuery(
+            name="findAllAreasNames",
+            query="SELECT u.nombre FROM Area u"
     )
  })
 public class Area implements Serializable {

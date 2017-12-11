@@ -43,6 +43,10 @@ import javax.persistence.Temporal;
             name="findPedidosByDestino",
             query="SELECT u FROM Pedido u WHERE u.destino = :destino"
     ),
+        @NamedQuery(
+            name="findPedidosByFechaEntrada",
+            query="SELECT u FROM Pedido u WHERE u.fechaEntrada = :fechaEntrada"
+    )
  })
 public class Pedido implements Serializable {
 
