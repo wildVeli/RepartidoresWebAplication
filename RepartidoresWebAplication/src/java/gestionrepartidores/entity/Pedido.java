@@ -17,6 +17,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 
@@ -25,7 +26,7 @@ import javax.persistence.Temporal;
  * @author Sergio López Fuentefría
  */
 @Entity
-@Table(name="pedidos",schema="repartidoresdb")
+@Table(name="pedidos",schema="dimdb")
 @NamedQueries({
     @NamedQuery(
             name="findAllPedidos",
@@ -48,6 +49,7 @@ import javax.persistence.Temporal;
             query="SELECT u FROM Pedido u WHERE u.fechaEntrada = :fechaEntrada"
     )
  })
+@XmlRootElement
 public class Pedido implements Serializable {
 
     private static final long serialVersionUID = 1L;

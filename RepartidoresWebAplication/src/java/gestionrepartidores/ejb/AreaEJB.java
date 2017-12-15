@@ -43,12 +43,12 @@ public class AreaEJB implements AreaEJBLocal {
     }
 
     @Override
-    public int getNumeroArea(String selectedItem) throws ExceptionGetNumeroArea {
+    public int getNumeroArea(String nombreArea) throws ExceptionGetNumeroArea {
         int numArea;
         LOGGER.info("get nombre de áreas");
         try{
           
-          numArea = Integer.valueOf(em.createNamedQuery("findNumeroArea").toString());
+          numArea = Integer.valueOf(em.createNamedQuery("findNumeroArea").setParameter("nombreArea",nombreArea).toString());
         }catch(Exception e){
             LOGGER.severe("error al obtener los nombres de las áreas"+e.getMessage());
             throw new ExceptionGetNumeroArea(e.getMessage());

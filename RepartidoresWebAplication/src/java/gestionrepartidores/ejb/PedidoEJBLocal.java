@@ -12,6 +12,7 @@ import gestionrepartidores.exceptions.ExceptionUpdatePedido;
 import gestionrepartidores.exceptions.ExceptionRemovePedido;
 import gestionrepartidores.exceptions.ExceptionGetPedidosBusquedaAvanzada;
 import gestionrepartidores.exceptions.ExceptionAddPedido;
+import gestionrepartidores.exceptions.ExceptionFindNumeroSeguimiento;
 import gestionrepartidores.exceptions.ExceptionGetDatosNuevoPedido;
 import java.time.LocalDate;
 import java.util.Collection;
@@ -23,6 +24,14 @@ import javax.ejb.Local;
  */
 @Local
 public interface PedidoEJBLocal {
+    
+    /**
+     * Devuelve un pedido que corresponda con el número de seguimiento enviado
+     * @param nSeguimiento número de seguimiento por el que se buscará el pedido
+     * @return devuelve un pedido por el número de seguimiento
+     * @throws ExceptionFindNumeroSeguimiento 
+     */
+    public Pedido findPedidoByNumeroSeguimiento(Integer nSeguimiento) throws ExceptionFindNumeroSeguimiento;
          /**
      * Devuelve todos los pedidos
      * @return colleción con todos los pedidos
@@ -52,7 +61,7 @@ public interface PedidoEJBLocal {
      * @param dpfechaSalida contiene la fecha final con la que se filtrará
      * @return colección de pedidos que cuadren con los parámetros de búsqueda
      */
-    public Collection getPedidosBusquedaAvanzada(String selectedItem, LocalDate dpfechaEntrada, LocalDate dpfechaSalida,AreaEJBLocal areaManager)throws ExceptionGetPedidosBusquedaAvanzada;
+    public Collection getPedidosBusquedaAvanzada(String selectedItem, String dpfechaEntrada, String dpfechaSalida,AreaEJBLocal areaManager)throws ExceptionGetPedidosBusquedaAvanzada;
         /**
      * Elimina un pedido
      * @param nSeguimiento número de seguimiento del pedido a eliminar

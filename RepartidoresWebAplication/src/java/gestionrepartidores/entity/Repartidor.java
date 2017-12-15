@@ -16,6 +16,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
   *  Mantiene los datos que contienen los Repartidores
@@ -41,6 +43,7 @@ import javax.persistence.Temporal;
             query="SELECT u FROM repartidores u"
     ),    
  })
+@XmlRootElement
 public class Repartidor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -60,6 +63,7 @@ public class Repartidor implements Serializable {
     @OneToMany(mappedBy = "repartidor")
     private Collection<Pedido> pedidos;
 
+    @XmlTransient
     public Collection<Pedido> getPedidos() {
         return pedidos;
     }
@@ -128,6 +132,7 @@ public class Repartidor implements Serializable {
         this.password = password;
     }
 
+    @XmlTransient
     public Collection<Recaudacion> getRecaudaciones() {
         return recaudaciones;
     }
@@ -136,6 +141,7 @@ public class Repartidor implements Serializable {
         this.recaudaciones = recaudaciones;
     }
 
+    @XmlTransient
     public Collection<Area> getAreas() {
         return areas;
     }

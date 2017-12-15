@@ -15,6 +15,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *  Mantiene los datos que contienen las áreas
@@ -29,7 +31,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name="areas",schema="repartidoresdb")
+@Table(name="areas",schema="dimdb")
 @NamedQueries({
     @NamedQuery(
             name="findAllAreas",
@@ -37,13 +39,14 @@ import javax.persistence.Table;
     ),
     @NamedQuery(
             name="findNumeroArea",
-            query="SELECT u.cp FROM Area u WHERE u.nombre = :nombre"
+            query="SELECT u.cp FROM Area u WHERE u.nombre = :nombreArea"
     ),
     @NamedQuery(
             name="findAllAreasNames",
             query="SELECT u.nombre FROM Area u"
     )
  })
+@XmlRootElement
 public class Area implements Serializable {
 
 
@@ -58,6 +61,7 @@ public class Area implements Serializable {
     @OneToMany(mappedBy = "area")
     private Collection<Pedido> pedidos;
 
+    @XmlTransient
     public Collection<Pedido> getPedidos() {
         return pedidos;
     }
@@ -67,6 +71,7 @@ public class Area implements Serializable {
     }
 
     
+    @XmlTransient
     public List<Repartidor> getRepartidors() {
         return repartidors;
     }
