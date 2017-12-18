@@ -36,11 +36,11 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Sergio López Fuentefría
  */
 @Entity
-@Table(name="repartidores",schema="repartidoresdb")
+@Table(name="repartidores",schema="dimdb")
 @NamedQueries({
     @NamedQuery(
             name="findAllRepartidores",
-            query="SELECT u FROM repartidores u"
+            query="SELECT u FROM Repartidor u"
     ),    
  })
 @XmlRootElement

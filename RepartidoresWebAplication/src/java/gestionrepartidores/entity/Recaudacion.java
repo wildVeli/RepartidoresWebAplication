@@ -20,7 +20,7 @@ import javax.persistence.Temporal;
  * @author Sergio López Fuentefría
  */
 @Entity
-@Table(name="recaudaciones",schema="repartidoresdb")
+@Table(name="recaudaciones",schema="dimdb")
 @NamedQueries({
     @NamedQuery(
             name="findAllRecaudacion",

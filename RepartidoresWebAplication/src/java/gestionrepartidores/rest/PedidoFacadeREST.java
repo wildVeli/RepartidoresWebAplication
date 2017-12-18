@@ -77,11 +77,23 @@ public class PedidoFacadeREST {
            LOGGER.log(Level.SEVERE,null, ex);
         }
     }
-
+    
     @GET
     @Path("{id}")
+    public Pedido findnSeguimiento(@PathParam("id") Integer nSeguimiento) {
+        Pedido x = null;
+        try {
+             x = ejb.findPedidoByNumeroSeguimiento(nSeguimiento);
+        } catch (ExceptionFindNumeroSeguimiento ex) {
+           LOGGER.log(Level.SEVERE,null, ex); 
+        }
+        return x;
+    }
+/*
+    @GET
+    @Path("{selectedItem,tfBuscarSimple}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Collection busquedaSimple(String selectedItem, String tfBuscarSimple) {
+    public Collection busquedaSimple(@PathParam("selectedItem") String selectedItem, @PathParam("tfBuscarSimple")String tfBuscarSimple) {
         Collection x = null;
         try {
             x = ejb.getPedidosBusquedaSimple(selectedItem, tfBuscarSimple);
@@ -90,7 +102,7 @@ public class PedidoFacadeREST {
         }
         return x;
     }
-
+*/
     @GET
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Collection<Pedido> findAll() {
@@ -103,12 +115,7 @@ public class PedidoFacadeREST {
         return x;
     }
 
-    @GET
-    @Path("{from}/{to}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Pedido> findRange(@PathParam("from") Date from, @PathParam("to") Date to) {
-        return null;
-    }
+
 
 
     
