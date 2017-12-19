@@ -60,7 +60,7 @@ public class Area implements Serializable {
     private List<Repartidor> repartidors;
     @OneToMany(mappedBy = "area")
     private Collection<Pedido> pedidos;
-
+    
     @XmlTransient
     public Collection<Pedido> getPedidos() {
         return pedidos;

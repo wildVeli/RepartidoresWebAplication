@@ -42,7 +42,7 @@ public class AreaFacadeREST {
 
     @GET
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Collection findAll() {
+    public Collection <Area>findAll() {
         Collection x = null;
         try {
             x = ejb.getAllAreaNames();
