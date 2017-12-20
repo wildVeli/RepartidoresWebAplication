@@ -89,9 +89,9 @@ public class PedidoFacadeREST {
         }
         return x;
     }
-/*
+    
     @GET
-    @Path("{selectedItem,tfBuscarSimple}")
+    @Path("filtrar/{selectedItem}/{tfBuscarSimple}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Collection busquedaSimple(@PathParam("selectedItem") String selectedItem, @PathParam("tfBuscarSimple")String tfBuscarSimple) {
         Collection x = null;
@@ -102,7 +102,7 @@ public class PedidoFacadeREST {
         }
         return x;
     }
-*/
+
     @GET
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Collection<Pedido> findAll() {

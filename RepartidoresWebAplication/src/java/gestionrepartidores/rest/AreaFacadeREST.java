@@ -42,13 +42,16 @@ public class AreaFacadeREST {
 
     @GET
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Collection <Area>findAll() {
-        Collection x = null;
+    public Collection<Area> findAll() {
+        Collection<Area> x = null;
         try {
+            LOGGER.info("obteniendo todas las áreas");
             x = ejb.getAllAreaNames();
+            
         } catch (ExceptionGetAllAreaNames ex) {
             LOGGER.log(Level.SEVERE,null, ex);
         }
+        LOGGER.info("tamaño array devuelto "+x.size());
         return x;
 
     }

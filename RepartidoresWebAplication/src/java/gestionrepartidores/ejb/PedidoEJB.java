@@ -166,6 +166,7 @@ public class PedidoEJB implements PedidoEJBLocal {
     public void removePedido(Pedido pedido) throws ExceptionRemovePedido {
         LOGGER.info("Borrar pedido");
         try{
+          pedido=em.merge(pedido);
           em.remove(pedido);
         }catch(Exception e){
             LOGGER.severe("error al borrar pedido"+e.getMessage());
