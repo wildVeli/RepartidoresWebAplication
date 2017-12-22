@@ -93,8 +93,8 @@ public class PedidoFacadeREST {
     @GET
     @Path("filtrar/{selectedItem}/{tfBuscarSimple}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Collection busquedaSimple(@PathParam("selectedItem") String selectedItem, @PathParam("tfBuscarSimple")String tfBuscarSimple) {
-        Collection x = null;
+    public Collection<Pedido> busquedaSimple(@PathParam("selectedItem") String selectedItem, @PathParam("tfBuscarSimple")String tfBuscarSimple) {
+        Collection<Pedido> x = null ;
         try {
             x = ejb.getPedidosBusquedaSimple(selectedItem, tfBuscarSimple);
         } catch (ExceptionGetPedidosBusquedaSimple ex) {

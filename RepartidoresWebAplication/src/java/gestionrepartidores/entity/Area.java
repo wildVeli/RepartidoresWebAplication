@@ -43,7 +43,7 @@ import javax.xml.bind.annotation.XmlTransient;
     ),
     @NamedQuery(
             name="findAllAreasNames",
-            query="SELECT u FROM Area u"
+            query="SELECT u.nombre FROM Area u"
     )
  })
 @XmlRootElement

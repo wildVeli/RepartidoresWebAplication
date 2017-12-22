@@ -27,7 +27,7 @@ public class AreaEJB implements AreaEJBLocal {
     private EntityManager em;
      
     @Override
-    public Collection getAllAreaNames() throws ExceptionGetAllAreaNames {
+    public Collection getAllAreas() throws ExceptionGetAllAreaNames {
         Collection<Area> areas = new ArrayList <Area> ();
         LOGGER.info("get nombre de áreas");
         try{
@@ -37,8 +37,6 @@ public class AreaEJB implements AreaEJBLocal {
             LOGGER.severe("error al obtener los nombres de las áreas"+e.getMessage());
             throw new ExceptionGetAllAreaNames(e.getMessage());
         }
-        LOGGER.info("tamaño de la colección: " + areas.size());
-        LOGGER.info("nombres de áreas obtenidos");
         return  areas;
     }
 

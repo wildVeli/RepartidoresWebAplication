@@ -46,8 +46,9 @@ import javax.xml.bind.annotation.XmlRootElement;
             query="SELECT u FROM Pedido u WHERE u.destino = :destino"
     ),
         @NamedQuery(
+                //https://community.oracle.com/blogs/juztinjames/2015/05/21/sql-date-functions-in-jpql
             name="findPedidosByFechaEntrada",
-            query="SELECT u FROM Pedido u WHERE u.fechaEntrada = :fechaEntrada"
+            query="SELECT u FROM Pedido u WHERE fun('TO_DATE',u.fechaEntrada, 'dd/mm/yyyy')  = :fechaEntrada"
     )
  })
 @XmlRootElement

@@ -46,12 +46,11 @@ public class AreaFacadeREST {
         Collection<Area> x = null;
         try {
             LOGGER.info("obteniendo todas las áreas");
-            x = ejb.getAllAreaNames();
+            x = ejb.getAllAreas();
             
         } catch (ExceptionGetAllAreaNames ex) {
             LOGGER.log(Level.SEVERE,null, ex);
         }
-        LOGGER.info("tamaño array devuelto "+x.size());
         return x;
 
     }

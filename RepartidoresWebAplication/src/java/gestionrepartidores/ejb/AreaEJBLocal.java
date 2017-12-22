@@ -21,7 +21,7 @@ public interface AreaEJBLocal {
      * Recoge todos los nombres de las áreas
      * @return una colección con los nombres de las áreas
      */
-    public Collection getAllAreaNames() throws ExceptionGetAllAreaNames;
+    public Collection getAllAreas() throws ExceptionGetAllAreaNames;
     /**
      * Busca el CP correspondiente al nombre de un área
      * @param selectedItem nombre del área que se consultará

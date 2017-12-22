@@ -47,6 +47,7 @@ public class PedidoEJB implements PedidoEJBLocal {
     @PersistenceContext
     private EntityManager em;
     private String formato = "dd/MM/yyyy";
+    private DateFormat df;
     
     
     
@@ -98,23 +99,27 @@ public class PedidoEJB implements PedidoEJBLocal {
     }
 
     @Override
-    public Collection getPedidosBusquedaSimple(String selectedItem, String tfBuscarSimple) throws ExceptionGetPedidosBusquedaSimple {
-        Collection <Pedido> pedidos = new ArrayList <Pedido> ();
+    public Collection<Pedido> getPedidosBusquedaSimple(String selectedItem, String tfBuscarSimple) throws ExceptionGetPedidosBusquedaSimple {
+        Collection<Pedido> pedidos = new ArrayList<Pedido> ();
         LOGGER.info("búsqueda simple pedido");
         try{
             Collection busqueda = null;
             switch(selectedItem){
             case ("N.Seguimiento"):
-                pedidos = em.createNamedQuery("findPedidosByNSeguimiento").setParameter("nSeguimiento",tfBuscarSimple).getResultList();
+                pedidos = em.createNamedQuery("findPedidosByNSeguimiento").setParameter("nSeguimiento",Integer.valueOf(tfBuscarSimple)).getResultList();
                 break;
             case ("Destino"):
                 pedidos = em.createNamedQuery("findPedidosByDestino").setParameter("destino",tfBuscarSimple).getResultList();
                 break;
             case ("Albarán"):
-                pedidos = em.createNamedQuery("findPedidosByAlbaran").setParameter("albaran",tfBuscarSimple).getResultList();
+                pedidos = em.createNamedQuery("findPedidosByAlbaran").setParameter("albaran",Integer.valueOf(tfBuscarSimple)).getResultList();
                 break;
             case ("Fecha Entrada"):
-                pedidos = em.createNamedQuery("findPedidosByFechaEntrada").setParameter("fechaEntrada",tfBuscarSimple).getResultList();
+                df = new SimpleDateFormat(formato); 
+                Date fechaEntrada;
+                Date fechaSalida;
+                fechaEntrada = df.parse(tfBuscarSimple);
+                pedidos = em.createNamedQuery("findPedidosByFechaEntrada").setParameter("fechaEntrada",fechaEntrada).getResultList();
                 break;
         }
           
@@ -134,7 +139,7 @@ public class PedidoEJB implements PedidoEJBLocal {
             Collection <Pedido> pedidos = this.getAllPedidos();
             
             int numeroArea=ejbArea.getNumeroArea(selectedItem);
-            DateFormat df = new SimpleDateFormat(formato); 
+            df = new SimpleDateFormat(formato); 
             Date fechaEntrada;
             Date fechaSalida;
             fechaEntrada = df.parse(dpfechaEntrada);
