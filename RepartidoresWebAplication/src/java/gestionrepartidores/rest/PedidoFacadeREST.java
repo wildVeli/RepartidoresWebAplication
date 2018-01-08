@@ -10,6 +10,7 @@ import gestionrepartidores.entity.Pedido;
 import gestionrepartidores.exceptions.ExceptionAddPedido;
 import gestionrepartidores.exceptions.ExceptionFindNumeroSeguimiento;
 import gestionrepartidores.exceptions.ExceptionGetAllPedidos;
+import gestionrepartidores.exceptions.ExceptionGetPedidosBusquedaAvanzada;
 import gestionrepartidores.exceptions.ExceptionGetPedidosBusquedaSimple;
 import gestionrepartidores.exceptions.ExceptionRemovePedido;
 import gestionrepartidores.exceptions.ExceptionUpdatePedido;
@@ -98,6 +99,19 @@ public class PedidoFacadeREST {
         try {
             x = ejb.getPedidosBusquedaSimple(selectedItem, tfBuscarSimple);
         } catch (ExceptionGetPedidosBusquedaSimple ex) {
+            LOGGER.log(Level.SEVERE,null, ex);
+        }
+        return x;
+    }
+    
+        @GET
+    @Path("filtrar/{selectedItem}/{fechaEntrada}/{fechaSalida}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Collection<Pedido> busquedaAvanzada(@PathParam("selectedItem") String selectedItem, @PathParam("fechaEntrada")String fechaEntrada,@PathParam("fechaSalida")String fechaSalida) {
+        Collection<Pedido> x = null ;
+        try {
+            x = ejb.getPedidosBusquedaAvanzada(selectedItem, fechaEntrada,fechaSalida);
+        } catch (ExceptionGetPedidosBusquedaAvanzada ex) {
             LOGGER.log(Level.SEVERE,null, ex);
         }
         return x;

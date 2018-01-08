@@ -61,7 +61,7 @@ public interface PedidoEJBLocal {
      * @param dpfechaSalida contiene la fecha final con la que se filtrará
      * @return colección de pedidos que cuadren con los parámetros de búsqueda
      */
-    public Collection getPedidosBusquedaAvanzada(String selectedItem, String dpfechaEntrada, String dpfechaSalida,AreaEJBLocal areaManager)throws ExceptionGetPedidosBusquedaAvanzada;
+    public Collection getPedidosBusquedaAvanzada(String selectedItem, String dpfechaEntrada, String dpfechaSalida)throws ExceptionGetPedidosBusquedaAvanzada;
         /**
      * Elimina un pedido
      * @param nSeguimiento número de seguimiento del pedido a eliminar
@@ -72,4 +72,5 @@ public interface PedidoEJBLocal {
      * @return devuelve un nuevo pedido con los datos basicos generados en base a los pedidos existentes
      */
     public PedidoEJB getDatosNuevoPedido()throws ExceptionGetDatosNuevoPedido;
+
 }

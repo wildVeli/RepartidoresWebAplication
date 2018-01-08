@@ -46,7 +46,7 @@ public class PedidoEJB implements PedidoEJBLocal {
     
     @PersistenceContext
     private EntityManager em;
-    private String formato = "dd/MM/yyyy";
+    private String formato = "dd-MM-yyyy";
     private DateFormat df;
     
     
@@ -105,16 +105,16 @@ public class PedidoEJB implements PedidoEJBLocal {
         try{
             Collection busqueda = null;
             switch(selectedItem){
-            case ("N.Seguimiento"):
+            case ("nseguimiento"):
                 pedidos = em.createNamedQuery("findPedidosByNSeguimiento").setParameter("nSeguimiento",Integer.valueOf(tfBuscarSimple)).getResultList();
                 break;
-            case ("Destino"):
+            case ("destino"):
                 pedidos = em.createNamedQuery("findPedidosByDestino").setParameter("destino",tfBuscarSimple).getResultList();
                 break;
-            case ("Albarán"):
+            case ("albaran"):
                 pedidos = em.createNamedQuery("findPedidosByAlbaran").setParameter("albaran",Integer.valueOf(tfBuscarSimple)).getResultList();
                 break;
-            case ("Fecha Entrada"):
+            case ("fechaentrada"):
                 df = new SimpleDateFormat(formato); 
                 Date fechaEntrada;
                 Date fechaSalida;
@@ -132,8 +132,9 @@ public class PedidoEJB implements PedidoEJBLocal {
         return  pedidos;
     }
 
+ 
     @Override
-    public Collection getPedidosBusquedaAvanzada(String selectedItem, String dpfechaEntrada, String dpfechaSalida, AreaEJBLocal areaManager) throws ExceptionGetPedidosBusquedaAvanzada {
+    public Collection getPedidosBusquedaAvanzada(String selectedItem, String dpfechaEntrada, String dpfechaSalida) throws ExceptionGetPedidosBusquedaAvanzada {
         Collection<Pedido> busqueda = null;
         try {
             Collection <Pedido> pedidos = this.getAllPedidos();
@@ -153,7 +154,7 @@ public class PedidoEJB implements PedidoEJBLocal {
                 busqueda = busqueda.stream().filter(c -> c.getFechaSalida().compareTo(fechaSalida)<=0)
                         .collect(Collectors.toList());
             }
-            if(!selectedItem.equals("Todas las áreas")){
+            if(!selectedItem.equals("todaslasareas")){
                 busqueda = busqueda.stream().filter(c ->c.getArea().equals(numeroArea)).collect(Collectors.toList());
             }
         } catch (ExceptionGetNumeroArea ex) {
@@ -188,4 +189,6 @@ public class PedidoEJB implements PedidoEJBLocal {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+
+
 }
