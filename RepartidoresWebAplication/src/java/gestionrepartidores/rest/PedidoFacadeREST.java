@@ -104,7 +104,7 @@ public class PedidoFacadeREST {
         return x;
     }
     
-        @GET
+    @GET
     @Path("filtrar/{selectedItem}/{fechaEntrada}/{fechaSalida}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Collection<Pedido> busquedaAvanzada(@PathParam("selectedItem") String selectedItem, @PathParam("fechaEntrada")String fechaEntrada,@PathParam("fechaSalida")String fechaSalida) {

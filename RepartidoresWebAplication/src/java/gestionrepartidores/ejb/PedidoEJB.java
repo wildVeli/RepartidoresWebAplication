@@ -138,32 +138,41 @@ public class PedidoEJB implements PedidoEJBLocal {
         Collection<Pedido> busqueda = null;
         try {
             Collection <Pedido> pedidos = this.getAllPedidos();
+            LOGGER.info("tamaño"+pedidos.size());
             
-            int numeroArea=ejbArea.getNumeroArea(selectedItem);
             df = new SimpleDateFormat(formato); 
             Date fechaEntrada;
             Date fechaSalida;
-            fechaEntrada = df.parse(dpfechaEntrada);
-            fechaSalida = df.parse(dpfechaSalida);
+            
+            
             if(dpfechaEntrada!=null){
-                
+                LOGGER.info("dpfechaentrada");
+                fechaEntrada = df.parse(dpfechaEntrada);
                 busqueda = pedidos.stream().filter(c -> c.getFechaEntrada().compareTo(fechaEntrada)>=0)
                         .collect(Collectors.toList());
+                 LOGGER.info("tamaño"+busqueda.size());
             }
             if(dpfechaSalida!=null){
+                LOGGER.info("dpfechasalida");
+                fechaSalida = df.parse(dpfechaSalida);
                 busqueda = busqueda.stream().filter(c -> c.getFechaSalida().compareTo(fechaSalida)<=0)
                         .collect(Collectors.toList());
+                 LOGGER.info("tamaño"+busqueda.size());
             }
             if(!selectedItem.equals("todaslasareas")){
+                int numeroArea=ejbArea.getNumeroArea(selectedItem);
+                LOGGER.info("todas las áreas");
                 busqueda = busqueda.stream().filter(c ->c.getArea().equals(numeroArea)).collect(Collectors.toList());
+                 LOGGER.info("tamaño"+busqueda.size());
             }
         } catch (ExceptionGetNumeroArea ex) {
-            LOGGER.severe("error al recoger el número de área"+ex.getMessage());  
+            LOGGER.severe("error al recoger el número de área "+ex.getMessage());  
         } catch (ExceptionGetAllPedidos ex) {
-            LOGGER.severe("error al recoger todos los pedidos"+ex.getMessage());  
+            LOGGER.severe("error al recoger todos los pedidos "+ex.getMessage());  
         } catch (ParseException ex) {
             LOGGER.severe("error al convertir fecha"+ex.getMessage());  
         }
+        LOGGER.info("tamaño"+busqueda.size());
         return busqueda;
         
     }

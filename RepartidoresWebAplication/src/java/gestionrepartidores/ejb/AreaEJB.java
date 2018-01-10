@@ -46,13 +46,14 @@ public class AreaEJB implements AreaEJBLocal {
         LOGGER.info("get nombre de áreas");
         try{
           
-          numArea = Integer.valueOf(em.createNamedQuery("findNumeroArea").setParameter("nombreArea",nombreArea).toString());
+          numArea =(Integer)em.createNamedQuery("findNumeroArea").setParameter("nombreArea",nombreArea).getResultList().get(0);
+          
         }catch(Exception e){
-            LOGGER.severe("error al obtener los nombres de las áreas"+e.getMessage());
+            LOGGER.severe("error al obtener el cp del área"+e.getMessage());
             throw new ExceptionGetNumeroArea(e.getMessage());
         }
    
-        LOGGER.info("nombres de áreas obtenidos");
+        LOGGER.info("cp de área obtenido "+numArea);
         return  numArea;
     }
 
