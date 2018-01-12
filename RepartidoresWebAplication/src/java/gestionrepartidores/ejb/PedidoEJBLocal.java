@@ -71,6 +71,6 @@ public interface PedidoEJBLocal {
      * Crea los datos para un nuevo pedido
      * @return devuelve un nuevo pedido con los datos basicos generados en base a los pedidos existentes
      */
-    public PedidoEJB getDatosNuevoPedido()throws ExceptionGetDatosNuevoPedido;
+    public Pedido getDatosNuevoPedido()throws ExceptionGetDatosNuevoPedido;
 
 }

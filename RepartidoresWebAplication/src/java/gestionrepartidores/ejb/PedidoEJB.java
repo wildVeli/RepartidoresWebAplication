@@ -159,14 +159,13 @@ public class PedidoEJB implements PedidoEJBLocal {
                         .collect(Collectors.toList());
                  LOGGER.info("tamaño"+busqueda.size());
             }
-            if(!selectedItem.equals("todaslasareas")){
-                int numeroArea=ejbArea.getNumeroArea(selectedItem);
-                LOGGER.info("todas las áreas");
-                busqueda = busqueda.stream().filter(c ->c.getArea().equals(numeroArea)).collect(Collectors.toList());
+            if(!selectedItem.equals("todaslasareas")){               
+                LOGGER.info("no todas las áreas");
+                ArrayList <Pedido> prueba=(ArrayList <Pedido>) busqueda;
+                LOGGER.info("area"+prueba.get(0).getArea());
+                busqueda = busqueda.stream().filter(c ->c.getArea().getNombre().equals(selectedItem)).collect(Collectors.toList());
                  LOGGER.info("tamaño"+busqueda.size());
             }
-        } catch (ExceptionGetNumeroArea ex) {
-            LOGGER.severe("error al recoger el número de área "+ex.getMessage());  
         } catch (ExceptionGetAllPedidos ex) {
             LOGGER.severe("error al recoger todos los pedidos "+ex.getMessage());  
         } catch (ParseException ex) {
@@ -191,9 +190,28 @@ public class PedidoEJB implements PedidoEJBLocal {
         LOGGER.info("pedido borrado");
     }
 
+    /*
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        PedidoBean pedido=new PedidoBean(pedidos.get(pedidos.size()-1).getNSeguimiento()+1
+                ,pedidos.get(pedidos.size()-1).getAlbaran()+1,dateFormat.format(date),"","","",0,0);
+    */
     @Override
-    public PedidoEJB getDatosNuevoPedido() throws ExceptionGetDatosNuevoPedido {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Pedido getDatosNuevoPedido() throws ExceptionGetDatosNuevoPedido {
+        LOGGER.info("generando datos nuevo pedido");
+        Pedido pedido = null;
+        try{
+         
+          DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+          Date date = new Date();
+            pedido = (Pedido) em.createNamedQuery("nSeguimientoLastPedido").getResultList().get(0);
+            pedido.setFechaEntrada(date);
+            LOGGER.info("seguimiento "+pedido.getnSeguimiento()+"albarán "+pedido.getAlbaran()+"fechaEntrada "+pedido.getFechaEntrada());
+        }catch(Exception e){
+            LOGGER.severe("error al generar datos nuevo pedido"+e.getMessage());
+            throw new ExceptionGetDatosNuevoPedido(e.getMessage());
+        }
+        return pedido;
     }
 
     // Add business logic below. (Right-click in editor and choose

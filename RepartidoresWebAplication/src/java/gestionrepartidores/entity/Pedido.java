@@ -49,7 +49,14 @@ import javax.xml.bind.annotation.XmlRootElement;
                 //https://community.oracle.com/blogs/juztinjames/2015/05/21/sql-date-functions-in-jpql
             name="findPedidosByFechaEntrada",
             query="SELECT u FROM Pedido u WHERE u.fechaEntrada = :fechaEntrada"
+    ),
+    @NamedQuery(
+            name="nSeguimientoLastPedido",
+            query="SELECT u FROM Pedido u ORDER BY u.nSeguimiento DESC "
+            //SELECT u FROM Pedido u ORDER BY u.nSeguimiento DESC LIMIT 1
+            //SELECT LAST(u) FROM Pedido u ORDER BY u.nSeguimiento DESC 
     )
+        
  })
 @XmlRootElement
 public class Pedido implements Serializable {

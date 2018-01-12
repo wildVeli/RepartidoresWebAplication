@@ -10,19 +10,15 @@ import gestionrepartidores.entity.Pedido;
 import gestionrepartidores.exceptions.ExceptionAddPedido;
 import gestionrepartidores.exceptions.ExceptionFindNumeroSeguimiento;
 import gestionrepartidores.exceptions.ExceptionGetAllPedidos;
+import gestionrepartidores.exceptions.ExceptionGetDatosNuevoPedido;
 import gestionrepartidores.exceptions.ExceptionGetPedidosBusquedaAvanzada;
 import gestionrepartidores.exceptions.ExceptionGetPedidosBusquedaSimple;
 import gestionrepartidores.exceptions.ExceptionRemovePedido;
 import gestionrepartidores.exceptions.ExceptionUpdatePedido;
 import java.util.Collection;
-import java.util.Date;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -81,11 +77,26 @@ public class PedidoFacadeREST {
     
     @GET
     @Path("{id}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Pedido findnSeguimiento(@PathParam("id") Integer nSeguimiento) {
         Pedido x = null;
         try {
              x = ejb.findPedidoByNumeroSeguimiento(nSeguimiento);
         } catch (ExceptionFindNumeroSeguimiento ex) {
+           LOGGER.log(Level.SEVERE,null, ex); 
+        }
+        return x;
+    }
+    
+    //Recoge los datos de el ultimo pedido de los datos para generar el nuevo pedido
+    @GET
+    @Path("nuevoPedido")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Pedido getDatosNuevoPedido() {
+        Pedido x = null;
+        try {
+             x = ejb.getDatosNuevoPedido();
+        } catch (ExceptionGetDatosNuevoPedido ex) {
            LOGGER.log(Level.SEVERE,null, ex); 
         }
         return x;
@@ -118,6 +129,7 @@ public class PedidoFacadeREST {
     }
 
     @GET
+    @Path("findAll")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Collection<Pedido> findAll() {
         Collection x = null;
@@ -128,9 +140,4 @@ public class PedidoFacadeREST {
         }
         return x;
     }
-
-
-
-
-    
 }
