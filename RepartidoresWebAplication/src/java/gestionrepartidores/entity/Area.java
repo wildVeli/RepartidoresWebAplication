@@ -56,8 +56,8 @@ public class Area implements Serializable {
     private Integer cp;
     private String nombre;
     private String descripcion;
-    @ManyToMany
-    private List<Repartidor> repartidors;
+    //@ManyToMany
+    //private List<Repartidor> repartidors;
     @OneToMany(mappedBy = "area")
     private Collection<Pedido> pedidos;
     
@@ -71,14 +71,8 @@ public class Area implements Serializable {
     }
 
     
-    @XmlTransient
-    public List<Repartidor> getRepartidors() {
-        return repartidors;
-    }
 
-    public void setRepartidors(List<Repartidor> repartidors) {
-        this.repartidors = repartidors;
-    }
+
 
     
     public Integer getCp() {

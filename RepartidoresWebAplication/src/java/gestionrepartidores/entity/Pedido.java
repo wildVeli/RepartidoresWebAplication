@@ -78,6 +78,15 @@ public class Pedido implements Serializable {
     @ManyToOne
     private Area area;
 
+    public Repartidor getRepartidor() {
+        return repartidor;
+    }
+
+    public void setRepartidor(Repartidor repartidor) {
+        this.repartidor = repartidor;
+    }
+
+    
     
     public Integer getnSeguimiento() {
         return nSeguimiento;
@@ -127,15 +136,6 @@ public class Pedido implements Serializable {
         this.tipoPago = tipoPago;
     }
 
-
-
-    public Repartidor getRepartidor() {
-        return repartidor;
-    }
-
-    public void setRepartidor(Repartidor repartidor) {
-        this.repartidor = repartidor;
-    }
 
     public Area getArea() {
         return area;

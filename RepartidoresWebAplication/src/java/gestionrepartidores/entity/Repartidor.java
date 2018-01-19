@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -58,7 +59,8 @@ public class Repartidor implements Serializable {
     private String password;
     @OneToMany(mappedBy = "repartidor")
     private Collection<Recaudacion> recaudaciones;
-    @ManyToMany(mappedBy = "repartidors")
+    @ManyToMany
+    @JoinTable(name="area_repartidor", schema="dimdb")
     private Collection<Area> areas;
     @OneToMany(mappedBy = "repartidor")
     private Collection<Pedido> pedidos;
@@ -73,7 +75,6 @@ public class Repartidor implements Serializable {
     }
     
 
-    
     
     
     public Integer getId() {
