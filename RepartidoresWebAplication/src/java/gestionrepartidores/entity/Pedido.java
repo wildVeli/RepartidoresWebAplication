@@ -19,6 +19,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 
 
@@ -78,6 +79,7 @@ public class Pedido implements Serializable {
     @ManyToOne
     private Area area;
 
+    @XmlTransient
     public Repartidor getRepartidor() {
         return repartidor;
     }
@@ -95,7 +97,7 @@ public class Pedido implements Serializable {
     public void setnSeguimiento(Integer nSeguimiento) {
         this.nSeguimiento = nSeguimiento;
     }
-
+    
     public Integer getAlbaran() {
         return albaran;
     }
@@ -136,7 +138,7 @@ public class Pedido implements Serializable {
         this.tipoPago = tipoPago;
     }
 
-
+    @XmlTransient
     public Area getArea() {
         return area;
     }

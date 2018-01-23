@@ -14,6 +14,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -27,6 +28,7 @@ import javax.persistence.Temporal;
             query="SELECT u FROM Recaudacion u"
     ),    
  })
+@XmlRootElement
 public class Recaudacion implements Serializable {
 
     private static final long serialVersionUID = 1L;
