@@ -70,9 +70,6 @@ public class Area implements Serializable {
         this.pedidos = pedidos;
     }
 
-    
-
-
 
     
     public Integer getCp() {

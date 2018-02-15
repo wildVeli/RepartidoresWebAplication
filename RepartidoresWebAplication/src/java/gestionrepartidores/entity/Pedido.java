@@ -64,7 +64,7 @@ public class Pedido implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private Integer nSeguimiento;
     private Integer albaran;
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -79,7 +79,7 @@ public class Pedido implements Serializable {
     @ManyToOne
     private Area area;
 
-    @XmlTransient
+    
     public Repartidor getRepartidor() {
         return repartidor;
     }
@@ -88,13 +88,11 @@ public class Pedido implements Serializable {
         this.repartidor = repartidor;
     }
 
-    
-    
-    public Integer getnSeguimiento() {
+    public Integer getNSeguimiento() {
         return nSeguimiento;
     }
 
-    public void setnSeguimiento(Integer nSeguimiento) {
+    public void setNSeguimiento(Integer nSeguimiento) {
         this.nSeguimiento = nSeguimiento;
     }
     
@@ -138,7 +136,7 @@ public class Pedido implements Serializable {
         this.tipoPago = tipoPago;
     }
 
-    @XmlTransient
+  
     public Area getArea() {
         return area;
     }

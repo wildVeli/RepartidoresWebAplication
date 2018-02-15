@@ -139,8 +139,10 @@ public class PedidoEJB implements PedidoEJBLocal {
         try {
             Collection <Pedido> pedidos = this.getAllPedidos();
             LOGGER.info("tamaño"+pedidos.size());
+
             
-            df = new SimpleDateFormat(formato); 
+           // df = new SimpleDateFormat(formato); 
+            df = new SimpleDateFormat("yyyy-MM-dd"); 
             Date fechaEntrada;
             Date fechaSalida;
             
@@ -206,7 +208,7 @@ public class PedidoEJB implements PedidoEJBLocal {
           Date date = new Date();
             pedido = (Pedido) em.createNamedQuery("nSeguimientoLastPedido").getResultList().get(0);
             pedido.setFechaEntrada(date);
-            LOGGER.info("seguimiento "+pedido.getnSeguimiento()+"albarán "+pedido.getAlbaran()+"fechaEntrada "+pedido.getFechaEntrada());
+            LOGGER.info("seguimiento "+pedido.getNSeguimiento()+"albarán "+pedido.getAlbaran()+"fechaEntrada "+pedido.getFechaEntrada());
         }catch(Exception e){
             LOGGER.severe("error al generar datos nuevo pedido"+e.getMessage());
             throw new ExceptionGetDatosNuevoPedido(e.getMessage());
