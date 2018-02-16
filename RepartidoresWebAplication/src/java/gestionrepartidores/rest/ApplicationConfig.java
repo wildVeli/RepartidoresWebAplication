@@ -32,6 +32,7 @@ public class ApplicationConfig extends Application {
         resources.add(gestionrepartidores.rest.AreaFacadeREST.class);
         resources.add(gestionrepartidores.rest.PedidoFacadeREST.class);
        // resources.add(gestionrepartidores.rest.RepartidorFacadeREST.class);
+        resources.add(gestionrepartidores.rest.RepartidorFacadeREST.class);
         
     }
     
